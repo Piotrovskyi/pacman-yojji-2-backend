@@ -63,20 +63,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "twitterUsername": {
-      "type": "string",
-      "unique": true
-    },
-    "websiteUrl": {
-      "type": "string"
-    },
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "bio": {
-      "type": "text"
-    },
     "profilePic": {
       "type": "media",
       "multiple": false,
@@ -114,7 +100,12 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "username"
+      "targetField": "nickname"
+    },
+    "nickname": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }
