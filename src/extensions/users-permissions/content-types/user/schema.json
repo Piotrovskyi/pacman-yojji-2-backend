@@ -106,6 +106,12 @@
       "type": "string",
       "unique": true,
       "required": true
+    },
+    "user_codes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-code.user-code",
+      "mappedBy": "user"
     }
   }
 }
