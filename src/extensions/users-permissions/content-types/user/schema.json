@@ -112,6 +112,12 @@
       "relation": "oneToMany",
       "target": "api::user-code.user-code",
       "mappedBy": "user"
+    },
+    "scores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::score.score",
+      "mappedBy": "user"
     }
   }
 }

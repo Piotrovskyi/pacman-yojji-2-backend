@@ -31,6 +31,12 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "user_codes"
+    },
+    "score": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::score.score",
+      "inversedBy": "user_code"
     }
   }
 }
