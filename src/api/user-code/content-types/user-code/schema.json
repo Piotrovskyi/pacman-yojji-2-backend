@@ -32,11 +32,22 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "user_codes"
     },
-    "score": {
+    "scores": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::score.score",
-      "inversedBy": "user_code"
+      "mappedBy": "user_code"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "executed",
+        "error"
+      ]
+    },
+    "executedAt": {
+      "type": "datetime"
     }
   }
 }

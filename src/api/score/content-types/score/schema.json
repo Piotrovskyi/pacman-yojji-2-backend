@@ -24,14 +24,13 @@
     "engine": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::engine.engine",
-      "inversedBy": "score"
+      "target": "api::engine.engine"
     },
     "user_code": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::user-code.user-code",
-      "inversedBy": "score"
+      "inversedBy": "scores"
     }
   }
 }
