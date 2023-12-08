@@ -13,6 +13,7 @@ module.exports = createCoreController('api::user-code.user-code', ({strapi}) => 
 
     await strapi.entityService.update("api::user-code.user-code", data.id, {
       data: {
+        status: 'pending',
         user: { id: user.id }
       }
     })

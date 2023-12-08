@@ -42,12 +42,15 @@
       "type": "enumeration",
       "enum": [
         "pending",
-        "executed",
+        "success",
         "error"
       ]
     },
     "executedAt": {
       "type": "datetime"
+    },
+    "error": {
+      "type": "string"
     }
   }
 }

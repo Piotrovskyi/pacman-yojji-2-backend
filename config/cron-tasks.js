@@ -1,5 +1,6 @@
 const path = require('path');
-const CRON = "0 */4 * * *";
+const gameRun = require('../game-node-runner');
+const CRON = "*/1 * * * *";
 
 module.exports = {
   pacmanExec: {
@@ -8,7 +9,8 @@ module.exports = {
       try {
         const [engine] = await strapi.entityService.findMany('api::engine.engine', {
           sort: { createdAt: 'desc' },
-          limit: 1
+          limit: 1,
+          populate: ['code']
         });
 
         const entries = await strapi.entityService.findMany('api::user-code.user-code', {
@@ -24,28 +26,31 @@ module.exports = {
         const scores = [];
         for(const code of Object.values(codesByUser)) {
           let status;
+          let error = '';
           try {
-            const codeToExec = require(path.join(__dirname, '..', `./public/uploads/${code.file.hash}${code.file.ext}`));
+            const clientCodePath = path.join(__dirname, '..', `./public/uploads/${code.file.hash}${code.file.ext}`);
+            const enginePath = path.join(__dirname, '..', `./public/uploads/${engine.code.hash}${engine.code.ext}`);
 
-            const score = codeToExec(); // TODO add real score
+            const score = gameRun(enginePath, clientCodePath); // TODO add real score
 
             scores.push({
               data: {
-                amount: score,
+                amount: score || 0,
                 publishedAt: new Date(),
                 user: code.user.id,
                 user_code: { id: code.id },
-                // engine: engine.id  TODO sometimes not add engine to score
               },
             });
-            status = 'executed';
+            status = 'success';
           } catch(e) {
             status = 'error';
+            error = e.message.slice(0, 50);
             console.error("execute user code error, user=", code.user.id, ' , ', e)
           } finally {
             strapi.entityService.update('api::user-code.user-code', code.id, {
               data: {
                 status,
+                error,
                 executedAt: new Date().toISOString()
               }
             });
