@@ -1,6 +1,6 @@
 const path = require('path');
 const gameRun = require('../game-node-runner');
-const CRON = "*/1 * * * *";
+const CRON = "0 */2 * * *";
 
 module.exports = {
   pacmanExec: {
