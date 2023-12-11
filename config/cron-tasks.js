@@ -31,12 +31,13 @@ module.exports = {
             const clientCodePath = path.join(__dirname, '..', `./public/uploads/${code.file.hash}${code.file.ext}`);
             const enginePath = path.join(__dirname, '..', `./public/uploads/${engine.code.hash}${engine.code.ext}`);
 
-            const score = gameRun(enginePath, clientCodePath); // TODO add real score
+            const { score, steps } = gameRun(enginePath, clientCodePath); // TODO add real score
 
             scores.push({
               data: {
                 amount: score || 0,
                 publishedAt: new Date(),
+                steps,
                 user: code.user.id,
                 user_code: { id: code.id },
               },

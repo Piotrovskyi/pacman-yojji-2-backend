@@ -1,11 +1,9 @@
 function run(enginePath, clientCodePath) {
   const gameModule = require(enginePath);
   const clientCode = require(clientCodePath);
-  console.log('gameModule', gameModule)
-  console.log('clientCode', clientCode)
-
   const game = gameModule.Game();
   const initialState = game.init();
+  const steps = [initialState];
 
   let newState = null;
 
@@ -18,9 +16,13 @@ function run(enginePath, clientCodePath) {
     game.setDirection(userResponse);
 
     newState = game.tick();
+    steps.push(newState)
     if (newState.gameOver) {
       console.log(newState.gameOverStatus + " " + newState.score)
-      return newState.score;
+      return {
+        score: newState.score,
+        steps
+      };
     }
   }
 }
