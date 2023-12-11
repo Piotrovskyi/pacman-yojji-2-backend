@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  back:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: back
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .tmp:/usr/src/app/.tmp:rw

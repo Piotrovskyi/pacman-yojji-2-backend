@@ -14,4 +14,6 @@ RUN npm i
 # Bundle app source
 COPY --chown=node:node . .
 
-CMD ["npm", "run", "develop"]
+RUN npm run build
+
+CMD ["npm", "start"]
