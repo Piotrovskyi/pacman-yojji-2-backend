@@ -31,6 +31,9 @@
       "relation": "manyToOne",
       "target": "api::user-code.user-code",
       "inversedBy": "scores"
+    },
+    "steps": {
+      "type": "json"
     }
   }
 }

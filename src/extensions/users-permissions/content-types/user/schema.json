@@ -63,41 +63,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "profilePic": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "color": {
-      "type": "enumeration",
-      "enum": [
-        "Red",
-        "Orange",
-        "Amber",
-        "Yellow",
-        "Lime",
-        "Green",
-        "Emerald",
-        "Teal",
-        "Cyan",
-        "Sky",
-        "Blue",
-        "Indigo",
-        "Violet",
-        "Purple",
-        "Fuchsia",
-        "Pink",
-        "Rose"
-      ],
-      "default": "Cyan",
-      "required": true
-    },
     "slug": {
       "type": "uid",
       "targetField": "nickname"
